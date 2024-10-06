@@ -5,8 +5,9 @@ import {
   useLocation,
 } from "react-router-dom";
 
-import Disbursment from "./pages/Disbusement"
-import Utility from "./pages/Utility";
+import Disbursment from "./pages/Disbursement"
+import Dashboard from "./pages/Dashboard";
+import Utility from "./pages/Utilities"
 import Tranfer from "./pages/Transfer";
 import Deposit from "./pages/Deposit";
 import Hero from "./pages/Hero";
@@ -23,7 +24,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Hero />} />
           <Route path="/hero" element={<Hero />} />
-          <Route path="/utility" element={<Utility />} />
+          <Route path="/Dashboard" element={<Dashboard />} />
+          <Route path="/Utility" element={<Utility/>} />
           <Route path="/tranfer" element={<Tranfer />} />
           <Route path="/disbursment" element={<Disbursment />} />
           <Route path="/deposit" element={<Deposit />} />
