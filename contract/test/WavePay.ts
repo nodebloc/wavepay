@@ -5,6 +5,7 @@ import {
 import { anyValue } from "@nomicfoundation/hardhat-chai-matchers/withArgs";
 import { expect } from "chai";
 import hre from "hardhat";
+import { ethers } from "ethers";
 
 describe("WavePay", function () {
   
@@ -49,8 +50,28 @@ describe("WavePay", function () {
               .withArgs(owner.address, savedAddresses);
             
             const userAddresses = await wavePay.connect(owner).getUserAddresses();
-            console.log(userAddresses)
             expect(userAddresses).to.deep.equal(savedAddresses);
         });
+
+        it("Should update addresses correctly", async function () {
+          const { wavePay, owner, addr1, addr2, addr3, addr4 } = await loadFixture(deployWavePay);
+          const savedAddresses = [addr1.address, addr2.address];
+
+          await wavePay.saveAddresses(savedAddresses);
+          const newAddresses = [addr3.address];
+          await wavePay.updateAddresses(newAddresses);
+          expect(await wavePay.getUserAddresses()).to.deep.equal(newAddresses);
+      });
+
+      it("Should emit AddressUpdated event", async function () {
+        const { wavePay, owner, addr1, addr2, addr3, addr4 } = await loadFixture(deployWavePay);
+        const savedAddresses = [addr1.address, addr2.address];
+        
+          await wavePay.saveAddresses(savedAddresses);
+          const newAddresses = [addr3.address];
+          await expect(wavePay.updateAddresses(newAddresses))
+              .to.emit(wavePay, "AddressUpdated")
+              .withArgs(owner.address, newAddresses);
+      });
     });
 });
