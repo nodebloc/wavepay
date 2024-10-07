@@ -19,6 +19,7 @@ import Tranfer from "./pages/Transfer";
 import Deposit from "./pages/Deposit";
 import Hero from "./pages/Hero";
 import Navbar from "./components/Navbar";
+import Dashboard from "./pages/Dashboard";
 
 // 0. Setup queryClient
 const queryClient = new QueryClient();
@@ -47,7 +48,7 @@ createAppKit({
   themeVariables: {
     "--w3m-accent": "transparent",
     "--w3m-color-mix-strength": 0,
-    "--w3m-font-size-master": "0.6rem",
+    "--w3m-font-size-master": "0.5rem",
     "--wui-color-gray-glass-010": "0",
   },
 });
@@ -69,11 +70,13 @@ function App() {
           <div className="flex-grow overflow-hidden">
             <Routes>
               <Route path="/" element={<Hero />} />
+
               <Route path="/hero" element={<Hero />} />
-              <Route path="/utility" element={<Utility />} />
-              <Route path="/tranfer" element={<Tranfer />} />
-              <Route path="/disbursment" element={<Disbursment />} />
-              <Route path="/deposit" element={<Deposit />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/dashboard/utility" element={<Utility />} />
+              <Route path="/dashboard/transfer" element={<Tranfer />} />
+              <Route path="/dashboard/disbursment" element={<Disbursment />} />
+              <Route path="/dashboard/deposit" element={<Deposit />} />
             </Routes>
           </div>
         </div>

@@ -1,64 +1,70 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ChevronDown, Plus, Send } from 'lucide-react';
+import DashNav from '../components/DashNav';
 
-interface DisbursementProps {
-  amount?: number;
-  recipientCount?: number;
-  btcAmount?: number;
+interface Recipient {
+  address: string;
+  amount: number;
 }
 
-const Disbursement: React.FC<DisbursementProps> = ({
-  amount = 0,
-  recipientCount = 0,
-  btcAmount = 0
-}) => {
+const Disbursement: React.FC = () => {
+  const [recipients, setRecipients] = useState<Recipient[]>([{ address: '', amount: 0 }]);
+
+  const handleAddRecipient = () => {
+    setRecipients([...recipients, { address: '', amount: 0 }]);
+  };
+
+  const handleRecipientChange = (index: number, field: keyof Recipient, value: string | number) => {
+    const updatedRecipients = [...recipients];
+    if (field === 'amount') {
+      updatedRecipients[index].amount = Number(value);
+    } else {
+      updatedRecipients[index].address = value as string;
+    }
+    setRecipients(updatedRecipients);
+  };
+
+  const totalAmount = recipients.reduce((sum, recipient) => sum + recipient.amount, 0).toFixed(2);
+
   return (
-    <div className="bg-gray-900 text-white min-h-screen w-full p-8">
-      <div className="max-w-md mx-auto">
-        <h1 className="text-3xl font-bold mb-4 text-center">Disbursement</h1>
-        
-        <p className="text-center mb-6">
-          Sending ${amount.toFixed(2)} to {recipientCount} {recipientCount === 1 ? 'person' : 'people'}
-        </p>
-        
-        <div className="flex justify-center space-x-4 mb-6">
-          <div className="bg-blue-500 rounded-full p-2">
-            <img src="/api/placeholder/40/40" alt="PlayStation" className="w-10 h-10" />
+    <div className='bg-primary-100 text-white h-screen w-full'>
+      <DashNav />
+      <div className="flex items-center justify-center p-8">
+        <div className="w-[700px] bg-primary-500 px-8 py-6 mx-auto rounded-2xl shadow-lg overflow-hidden max-h-[80vh]">
+          <h1 className="text-4xl font-bold mb-4 text-center">Disbusement</h1>
+          <p className="text-center mb-6">Total Amount: ${totalAmount}</p>
+
+          <div className="overflow-y-auto max-h-60 mb-6">
+            {recipients.map((recipient, index) => (
+              <div key={index} className="mb-4 mt-3 mx-4 flex justify-between space-x-5 items-center">
+                <input
+                  type="text"
+                  placeholder="Recipient Address"
+                  className="w-full bg-transparent border-b border-blue-500 pb-2 focus:outline-none pb-2 mr-2"
+                  value={recipient.address}
+                  onChange={(e) => handleRecipientChange(index, 'address', e.target.value)}
+                />
+                <input
+                  type="number"
+                  placeholder="Amount"
+                  className="bg-transparent border-b border-blue-500 pb-2 focus:outline-none w-40"
+                  value={recipient.amount > 0 ? recipient.amount : ''}
+                  onChange={(e) => handleRecipientChange(index, 'amount', e.target.value)}
+                />
+              </div>
+            ))}
           </div>
-          <div className="bg-blue-500 rounded-full p-2">
-            <img src="/api/placeholder/40/40" alt="User" className="w-10 h-10" />
-          </div>
+
+          <button onClick={handleAddRecipient} className="text-blue-500 mx-auto flex justify-center items-center w-60 mb-4">
+            <Plus size={20} className="mr-2" />
+            Add Recipient
+          </button>
+
+          <button className="bg-gradient-to-r from-blue-500 to-blue-700 border-2 border-white text-white w-full py-3 rounded-full flex items-center justify-center">
+            <Send size={20} className="mr-2" />
+            Send now
+          </button>
         </div>
-        
-        <div className="mb-6">
-          <label className="block text-gray-400 mb-2">Address:</label>
-          <div className="relative">
-            <input type="text" className="w-full bg-gray-800 rounded-md p-2 pr-10" />
-            <button className="absolute right-2 top-1/2 transform -translate-y-1/2 text-blue-500">
-              <Plus size={20} />
-            </button>
-          </div>
-        </div>
-        
-        <div className="bg-gray-800 rounded-md p-3 flex justify-between items-center mb-6">
-          <span>{btcAmount.toFixed(4)}</span>
-          <div className="flex items-center">
-            <img src="/api/placeholder/24/24" alt="Bitcoin" className="w-6 h-6 mr-2" />
-            <span className="mr-2">BTC</span>
-            <ChevronDown size={20} />
-          </div>
-        </div>
-        
-        <div className="mb-6">
-          <p className="text-blue-500">Amount: <span className="text-white text-2xl font-bold">${amount.toFixed(2)}</span></p>
-        </div>
-        
-        <button className="text-blue-500 block mx-auto mb-6">Review recipients</button>
-        
-        <button className="bg-blue-500 text-white w-full py-3 rounded-md flex items-center justify-center">
-          <Send size={20} className="mr-2" />
-          Send now
-        </button>
       </div>
     </div>
   );

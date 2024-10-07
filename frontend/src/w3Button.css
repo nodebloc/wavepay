@@ -11,3 +11,9 @@ w3m-button {
 w3m-button:hover {
   background: linear-gradient(to right, #3b82f6, #1e3a8a) !important;
 }
+
+
+.hero {
+  background-image: url();
+  background-size: ;
+}
