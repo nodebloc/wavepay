@@ -1,0 +1,13 @@
+w3m-button {
+  padding: 5px 24px !important;
+  background: linear-gradient(to right, #3b82f6, #1e3a8a) !important;
+  border-radius: 9999px !important;
+  color: white !important;
+  font-size: 1rem !important;
+  border: 2px solid white !important;
+  transition: background 0.3s ease !important;
+}
+
+w3m-button:hover {
+  background: linear-gradient(to right, #3b82f6, #1e3a8a) !important;
+}

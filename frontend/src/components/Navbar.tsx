@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import "../w3Button.css"
+
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="flex justify-between items-center py-4 px-8 lg:px-24 bg-primary-100 relative">
+    <nav className="flex justify-between items-center py-4 px-8 lg:px-24 bg-primary-100 relative z-10">
       {/* Logo */}
       <div className="text-white text-lg sm:text-xl md:text-2xl font-bold">
         WAVE-PAY
@@ -34,10 +37,8 @@ const Navbar = () => {
       </div>
 
       {/* Desktop Connect Wallet Button */}
-      <div className="hidden lg:block">
-        <button className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-700 text-white text-sm md:text-base rounded-full border-2 border-white shadow-lg hover:from-blue-400 hover:to-blue-600 transition-all">
-          Connect Wallet
-        </button>
+      <div className="hidden lg:block py-4">
+      <w3m-button/>
       </div>
 
       {/* Mobile Sidebar */}
@@ -68,9 +69,7 @@ const Navbar = () => {
 
           {/* Connect Wallet Button */}
           <div className="flex justify-end mt-10">
-          <button className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-700 text-white text-sm md:text-base rounded-full border-2 border-white shadow-lg hover:from-blue-400 hover:to-blue-600 transition-all">
-            Connect Wallet
-          </button>
+          <w3m-button />
           </div>
         </div>
       )}
