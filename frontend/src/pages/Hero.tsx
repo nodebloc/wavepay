@@ -1,6 +1,8 @@
 import React from "react";
 import Hexagon from "../assets/images/hexagon.png";
 import Text from "../assets/images/wave-pay-text.png"
+
+
 const Hero = () => {
   return (
     <section className="h-lvh relative bg-primary-100 text-white px-8 lg:px-24 overflow-y-hidden">

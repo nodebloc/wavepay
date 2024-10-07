@@ -13,8 +13,8 @@ import { arbitrum, baseSepolia, mainnet } from "@reown/appkit/networks";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
 
-import Disbursment from "./pages/Disbusement";
-import Utility from "./pages/Utility";
+import Disbursment from "./pages/Disbursement";
+import Utility from "./pages/Utilities";
 import Tranfer from "./pages/Transfer";
 import Deposit from "./pages/Deposit";
 import Hero from "./pages/Hero";
@@ -47,7 +47,6 @@ createAppKit({
   themeVariables: {
     "--w3m-accent": "transparent",
     "--w3m-color-mix-strength": 0,
-    // "--w3m-border-radius-master": "0",
     "--w3m-font-size-master": "0.6rem",
     "--wui-color-gray-glass-010": "0",
   },
