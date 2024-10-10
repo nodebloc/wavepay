@@ -55,7 +55,7 @@ contract WavePay {
     }
 
     function transfer(address recipient, uint256 amount) public payable {
-        require(msg.value == amount, "Error: Incorrect Ether amount sent");
+        require(msg.value >= amount, "Error: Incorrect Ether amount sent");
         
         payable(recipient).transfer(amount);
         

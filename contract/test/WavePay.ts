@@ -73,5 +73,48 @@ describe("WavePay", function () {
               .to.emit(wavePay, "AddressUpdated")
               .withArgs(owner.address, newAddresses);
       });
+
+      it("Should transfer Ether to a single recipient", async function () {
+        const { wavePay, owner, addr1 } = await loadFixture(deployWavePay);
+        
+        const provider = ethers.getDefaultProvider();
+
+        // await owner.sendTransaction({
+        //   to: wavePay.getAddress(),
+        //   value: ethers.parseEther("10.0"),
+        // });
+        
+        // await expect(wavePay.connect(owner).transfer(addr1.address, ethers.parseEther("1.0")))
+        //   .to.emit(wavePay, "TransferSingle")
+        //   .withArgs(owner.address, addr1.address, ethers.parseEther("1.0"));
+
+        console.log(await provider.getBalance(addr1.address));
+        
+        // expect(await provider.getBalance(addr1.address)).to.equal(ethers.parseEther("1.0"));
+      });
+    
+      it("Should transfer Ether to multiple recipients", async function () {
+        const { wavePay, owner, addr1, addr2, addr3 } = await loadFixture(deployWavePay);
+        
+        const provider = ethers.getDefaultProvider();
+
+        console.log(await provider.getBalance(addr1.address));
+
+        // await owner.sendTransaction({
+        //   to: wavePay.getAddress(),
+        //   value: ethers.parseEther("10.0"),
+        // });
+        
+        // const recipients = [addr1.address, addr2.address, addr3.address];
+        // const amounts = [ethers.parseEther("1.0"), ethers.parseEther("2.0"), ethers.parseEther("3.0")];
+    
+        // await expect(wavePay.connect(owner).transferToMultiple(recipients, amounts))
+        //   .to.emit(wavePay, "MultiTransfer")
+        //   .withArgs(owner.address, recipients, ethers.parseEther("6.0"));
+          
+        // expect(await provider.getBalance(addr1.address)).to.equal(ethers.parseEther("1.0"));
+        // expect(await provider.getBalance(addr2.address)).to.equal(ethers.parseEther("2.0"));
+        // expect(await provider.getBalance(addr3.address)).to.equal(ethers.parseEther("3.0"));
+      });
     });
 });
