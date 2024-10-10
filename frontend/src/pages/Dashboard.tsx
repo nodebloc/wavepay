@@ -102,53 +102,62 @@ const Dashboard = () => {
           </button>
         </div>
 
-        {/* Activity Card */}
-        <div className="col-span-1 md:col-span-3 bg-primary-500 text-white  p-6 rounded-3xl shadow-lg h-auto mt-6">
-          <h2 className="text-xl font-semibold mb-4">Activity</h2>
-          <ul className="space-y-4">
-            <li className="flex justify-between items-center bg-primary-600 p-3 rounded-full">
-              <div className="flex items-center">
-                <div className="bg-gray-600 w-10 h-10 rounded-full mr-4"></div>
-                <div>
-                  <p>Someone sent you a transaction request</p>
-                  <p className="text-gray-400 text-sm">23 Apr, 2023 - 21:22</p>
-                </div>
-              </div>
-              <div className="flex gap-2">
-                <button className="bg-gray-600 px-4 py-2 rounded-full hover:bg-gray-500 transition-all">
-                  Reject
-                </button>
-                <button className="bg-gradient-to-r from-blue-500 to-blue-700 border-2 border-white px-4 py-2 rounded-full hover:bg-blue-400 transition-all">
-                  Accept
-                </button>
-              </div>
-            </li>
-            <li className="flex justify-between items-center bg-primary-600 p-3 rounded-full">
-              <div className="flex items-center">
-                <div className="bg-gray-600 w-10 h-10 rounded-full mr-4"></div>
-                <div>
-                  <p>Someone canceled your transaction request</p>
-                  <p className="text-blue-400 text-sm">Overtime short</p>
-                </div>
-              </div>
-              <button className="bg-gradient-to-r from-blue-500 to-blue-700 border-2 border-white px-4 py-2 rounded-full hover:bg-blue-400 transition-all">
-                Resend
-              </button>
-            </li>
-            <li className="flex justify-between items-center bg-primary-600 p-3 rounded-full">
-              <div className="flex items-center">
-                <div className="bg-gray-600 w-10 h-10 rounded-full mr-4"></div>
-                <div>
-                  <p>Someone sent you 5023 Pi</p>
-                  <p className="text-blue-400 text-sm">Overtime short</p>
-                </div>
-              </div>
-              <button className="bg-gradient-to-r from-blue-500 to-blue-700 border-2 border-white px-4 py-2 rounded-full hover:bg-blue-400 transition-all">
-                Detail
-              </button>
-            </li>
-          </ul>
+        {/* Transaction History Card */}
+<div className="col-span-1 md:col-span-3 bg-primary-500 text-white p-6 rounded-lg shadow-lg h-auto mt-6">
+  <h2 className="text-xl font-semibold mb-4">Transaction History</h2>
+  <ul className="space-y-4">
+    <li className="flex justify-between items-center bg-primary-600 p-3 rounded-lg">
+      <div className="flex items-center">
+        <div className="bg-gray-600 w-10 h-10 rounded-full mr-4"></div>
+        <div>
+          <p>Received 1.5 ETH from John Doe</p>
+          <p className="text-gray-400 text-sm">23 Apr, 2023 - 21:22</p>
         </div>
+      </div>
+    </li>
+
+    <li className="flex justify-between items-center bg-primary-600 p-3 rounded-lg">
+      <div className="flex items-center">
+        <div className="bg-gray-600 w-10 h-10 rounded-full mr-4"></div>
+        <div>
+          <p>Payment sent to Jane Doe</p>
+          <p className="text-gray-400 text-sm">22 Apr, 2023 - 18:45</p>
+        </div>
+      </div>
+    </li>
+
+    <li className="flex justify-between items-center bg-primary-600 p-3 rounded-lg">
+      <div className="flex items-center">
+        <div className="bg-gray-600 w-10 h-10 rounded-full mr-4"></div>
+        <div>
+          <p>Transaction Failed: Insufficient funds</p>
+          <p className="text-gray-400 text-sm">21 Apr, 2023 - 14:32</p>
+        </div>
+      </div>
+    </li>
+
+    <li className="flex justify-between items-center bg-primary-600 p-3 rounded-lg">
+      <div className="flex items-center">
+        <div className="bg-gray-600 w-10 h-10 rounded-full mr-4"></div>
+        <div>
+          <p>Deposited 0.75 BTC to your wallet</p>
+          <p className="text-gray-400 text-sm">20 Apr, 2023 - 10:18</p>
+        </div>
+      </div>
+    </li>
+
+    <li className="flex justify-between items-center bg-primary-600 p-3 rounded-lg">
+      <div className="flex items-center">
+        <div className="bg-gray-600 w-10 h-10 rounded-full mr-4"></div>
+        <div>
+          <p>Received 500 USDT from Mark Smith</p>
+          <p className="text-gray-400 text-sm">19 Apr, 2023 - 08:50</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
       </div>
     </div>
   );
