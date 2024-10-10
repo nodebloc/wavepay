@@ -1,8 +1,30 @@
+import  { useState, useEffect } from "react";
 import React from "react";
 import { Send, Plus, ChevronDown } from "lucide-react";
 import DashNav from "../components/DashNav";
 
 const Dashboard = () => {
+  const [balance, setBalance] = useState(null); // State to hold the balance
+
+  useEffect(() => {
+    const fetchBalance = async () => {
+      try {
+        // Fetching balance from the backend
+        const response = await fetch("http://localhost:5000/api/vtpass-balance");
+        console.log(response)
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        console.log(data)
+        setBalance(data.contents.balance); // Set balance data from the response
+      } catch (error) {
+        console.error("Error fetching balance:", error); // Handle any errors
+      }
+    };
+
+    fetchBalance(); // Call the function when the component loads
+  }, []);
   return (
     <div className="bg-primary-100 min-h-screen flex flex-col ">
       <DashNav/>
@@ -12,7 +34,8 @@ const Dashboard = () => {
         <div className="bg-primary-500 text-white  p-6 rounded-3xl space-y-40  shadow-lg h-[340px]">
           <div>
           <h2 className="text-xl font-semibold mb-4">My Wallet</h2>
-          <p className="text-4xl font-bold mb-6">₦200,101</p>
+          <p className="text-4xl font-bold mb-6">{balance ? `₦${balance}` : "Loading..."}</p>
+          
           </div>
           <div className="flex gap-4">
             <button className="bg-gradient-to-r from-blue-500 to-blue-700 border-2 border-white text-white px-6 py-2 rounded-full hover:bg-blue-400 transition-all">
