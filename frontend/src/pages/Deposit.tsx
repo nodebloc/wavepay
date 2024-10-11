@@ -31,7 +31,7 @@ const Deposit = () => {
             </div>
             <button
               type="submit"
-              className="bg-gradient-to-r from-blue-500 to-blue-700 border-2 border-white text-white w-full py-3 rounded-full flex items-center justify-center"
+              className="bg-gradient-to-r from-blue-500 to-blue-700 border-2 border-gray-300 text-white w-full py-3 rounded-full flex items-center justify-center"
             >
               <Send size={20} className="mr-2" />
               Deposit Now

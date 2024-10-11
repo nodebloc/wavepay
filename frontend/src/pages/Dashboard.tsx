@@ -1,8 +1,30 @@
+import  { useState, useEffect } from "react";
 import React from "react";
 import { Send, Plus, ChevronDown } from "lucide-react";
 import DashNav from "../components/DashNav";
 
 const Dashboard = () => {
+  const [balance, setBalance] = useState(null); // State to hold the balance
+
+  useEffect(() => {
+    const fetchBalance = async () => {
+      try {
+        // Fetching balance from the backend
+        const response = await fetch("http://localhost:5000/api/vtpass-balance");
+        console.log(response)
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        console.log(data)
+        setBalance(data.contents.balance); // Set balance data from the response
+      } catch (error) {
+        console.error("Error fetching balance:", error); // Handle any errors
+      }
+    };
+
+    fetchBalance(); // Call the function when the component loads
+  }, []);
   return (
     <div className="bg-primary-100 min-h-screen flex flex-col ">
       <DashNav/>
@@ -12,7 +34,8 @@ const Dashboard = () => {
         <div className="bg-primary-500 text-white  p-6 rounded-3xl space-y-40  shadow-lg h-[340px]">
           <div>
           <h2 className="text-xl font-semibold mb-4">My Wallet</h2>
-          <p className="text-4xl font-bold mb-6">₦200,101</p>
+          <p className="text-4xl font-bold mb-6">{balance ? `₦${balance}` : "Loading..."}</p>
+          
           </div>
           <div className="flex gap-4">
             <button className="bg-gradient-to-r from-blue-500 to-blue-700 border-2 border-white text-white px-6 py-2 rounded-full hover:bg-blue-400 transition-all">
@@ -77,56 +100,61 @@ const Dashboard = () => {
             <Plus className="mr-2" size={18} /> Deposit
           </button>
         </div>
-
-        {/* Activity Card */}
-        <div className="col-span-1 md:col-span-3 bg-primary-500 text-white  p-6 rounded-3xl shadow-lg h-auto mt-6">
-          <h2 className="text-xl font-semibold mb-4">Activity</h2>
-          <ul className="space-y-4">
-            <li className="flex justify-between items-center bg-primary-600 p-3 rounded-full">
-              <div className="flex items-center">
-                <div className="bg-gray-600 w-10 h-10 rounded-full mr-4"></div>
-                <div>
-                  <p>Someone sent you a transaction request</p>
-                  <p className="text-blue-400 text-sm">23 Apr, 2023 - 21:22</p>
-                </div>
-              </div>
-              <div className="flex gap-2">
-                {/* <button className="bg-gray-600 px-4 py-2 rounded-full hover:bg-gray-500 transition-all">
-                  Reject
-                </button> */}
-                <button className="bg-gradient-to-r from-blue-500 to-blue-700 border-2 border-white px-4 py-2 rounded-full hover:bg-blue-400 transition-all">
-                  Detail
-                </button>
-              </div>
-            </li>
-            <li className="flex justify-between items-center bg-primary-600 p-3 rounded-full">
-              <div className="flex items-center">
-                <div className="bg-gray-600 w-10 h-10 rounded-full mr-4"></div>
-                <div>
-                  <p>Someone canceled your transaction request</p>
-                  <p className="text-blue-400 text-sm">23 Apr, 2023 - 21:22</p>
-                </div>
-              </div>
-              <button className="bg-gradient-to-r from-blue-500 to-blue-700 border-2 border-white px-4 py-2 rounded-full hover:bg-blue-400 transition-all">
-                Detail
-              </button>
-            </li>
-            <li className="flex justify-between items-center bg-primary-600 p-3 rounded-full">
-              <div className="flex items-center">
-                <div className="bg-gray-600 w-10 h-10 rounded-full mr-4"></div>
-                <div>
-                  <p>Someone sent you 0.0502 ETH</p>
-                  <p className="text-blue-400 text-sm">23 Apr, 2023 - 21:22</p>
-                </div>
-              </div>
-              <button className="bg-gradient-to-r from-blue-500 to-blue-700 border-2 border-white px-4 py-2 rounded-full hover:bg-blue-400 transition-all">
-                Detail
-              </button>
-            </li>
-          </ul>
+        {/* Transaction History Card */}
+<div className="col-span-1 md:col-span-3 bg-primary-500 text-white p-6 rounded-lg shadow-lg h-auto mt-6">
+  <h2 className="text-xl font-semibold mb-4">Transaction History</h2>
+  <ul className="space-y-4">
+    <li className="flex justify-between items-center bg-primary-600 p-3 rounded-lg">
+      <div className="flex items-center">
+        <div className="bg-gray-600 w-10 h-10 rounded-full mr-4"></div>
+        <div>
+          <p>Received 1.5 ETH from John Doe</p>
+          <p className="text-gray-400 text-sm">23 Apr, 2023 - 21:22</p>
         </div>
       </div>
-    </div>
+    </li>
+
+    <li className="flex justify-between items-center bg-primary-600 p-3 rounded-lg">
+      <div className="flex items-center">
+        <div className="bg-gray-600 w-10 h-10 rounded-full mr-4"></div>
+        <div>
+          <p>Payment sent to Jane Doe</p>
+          <p className="text-gray-400 text-sm">22 Apr, 2023 - 18:45</p>
+        </div>
+      </div>
+    </li>
+
+    <li className="flex justify-between items-center bg-primary-600 p-3 rounded-lg">
+      <div className="flex items-center">
+        <div className="bg-gray-600 w-10 h-10 rounded-full mr-4"></div>
+        <div>
+          <p>Transaction Failed: Insufficient funds</p>
+          <p className="text-gray-400 text-sm">21 Apr, 2023 - 14:32</p>
+        </div>
+      </div>
+    </li>
+
+    <li className="flex justify-between items-center bg-primary-600 p-3 rounded-lg">
+      <div className="flex items-center">
+        <div className="bg-gray-600 w-10 h-10 rounded-full mr-4"></div>
+        <div>
+          <p>Deposited 0.75 BTC to your wallet</p>
+          <p className="text-gray-400 text-sm">20 Apr, 2023 - 10:18</p>
+        </div>
+      </div>
+    </li>
+
+    <li className="flex justify-between items-center bg-primary-600 p-3 rounded-lg">
+      <div className="flex items-center">
+        <div className="bg-gray-600 w-10 h-10 rounded-full mr-4"></div>
+        <div>
+          <p>Received 500 USDT from Mark Smith</p>
+          <p className="text-gray-400 text-sm">19 Apr, 2023 - 08:50</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
   );
 };
 

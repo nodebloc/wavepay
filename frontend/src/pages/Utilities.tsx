@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { ChevronDown, Send } from 'lucide-react';
+import React from 'react';
+import { ChevronDown, CodeSquare, Send } from 'lucide-react';
 import DashNav from '../components/DashNav';
-
+import  { useState, useEffect } from "react";
 interface UtilitiesProps {
   btcAmount?: number;
 }
