@@ -73,7 +73,6 @@ const Dashboard = () => {
               <span className="text-blue-400">820 USDT</span>
             </li>
           </ul>
-          dic
           <button className="bg-gradient-to-r from-blue-500 to-blue-700 border-2 border-white w-full mt-6 py-3 rounded-full flex justify-center items-center text-white hover:bg-blue-400 transition-all">
             <Plus className="mr-2" size={18} /> Deposit
           </button>
@@ -88,15 +87,15 @@ const Dashboard = () => {
                 <div className="bg-gray-600 w-10 h-10 rounded-full mr-4"></div>
                 <div>
                   <p>Someone sent you a transaction request</p>
-                  <p className="text-gray-400 text-sm">23 Apr, 2023 - 21:22</p>
+                  <p className="text-blue-400 text-sm">23 Apr, 2023 - 21:22</p>
                 </div>
               </div>
               <div className="flex gap-2">
-                <button className="bg-gray-600 px-4 py-2 rounded-full hover:bg-gray-500 transition-all">
+                {/* <button className="bg-gray-600 px-4 py-2 rounded-full hover:bg-gray-500 transition-all">
                   Reject
-                </button>
+                </button> */}
                 <button className="bg-gradient-to-r from-blue-500 to-blue-700 border-2 border-white px-4 py-2 rounded-full hover:bg-blue-400 transition-all">
-                  Accept
+                  Detail
                 </button>
               </div>
             </li>
@@ -105,19 +104,19 @@ const Dashboard = () => {
                 <div className="bg-gray-600 w-10 h-10 rounded-full mr-4"></div>
                 <div>
                   <p>Someone canceled your transaction request</p>
-                  <p className="text-blue-400 text-sm">Overtime short</p>
+                  <p className="text-blue-400 text-sm">23 Apr, 2023 - 21:22</p>
                 </div>
               </div>
               <button className="bg-gradient-to-r from-blue-500 to-blue-700 border-2 border-white px-4 py-2 rounded-full hover:bg-blue-400 transition-all">
-                Resend
+                Detail
               </button>
             </li>
             <li className="flex justify-between items-center bg-primary-600 p-3 rounded-full">
               <div className="flex items-center">
                 <div className="bg-gray-600 w-10 h-10 rounded-full mr-4"></div>
                 <div>
-                  <p>Someone sent you 5023 Pi</p>
-                  <p className="text-blue-400 text-sm">Overtime short</p>
+                  <p>Someone sent you 0.0502 ETH</p>
+                  <p className="text-blue-400 text-sm">23 Apr, 2023 - 21:22</p>
                 </div>
               </div>
               <button className="bg-gradient-to-r from-blue-500 to-blue-700 border-2 border-white px-4 py-2 rounded-full hover:bg-blue-400 transition-all">
