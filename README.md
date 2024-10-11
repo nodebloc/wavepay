@@ -43,10 +43,36 @@ Users can disburse funds to multiple recipients at once, useful for businesses o
 
 #### Flow:
 - Users upload a list of recipients and the respective amounts.
-- The total funds to be disbursed are deducted from the user's wallet (either in fiat or crypto).
+- The total funds to be disbursed are deducted from the user's wallet (crypto).
 - The platform handles the distribution of funds to each recipient.
+- Support for bulk payments to multiple recipients.
+
+### 5. Transfers of Funds
+Users can transfer funds (crypto ) to other users on the platform or external wallet addresses.
+- Users input the recipient’s wallet address and the amount to be transferred.
+- The transaction is processed and confirmed on-chain (for crypto transfers) or via the platform's fiat system.
+- Secure transfer of crypto between WavePay users or to external wallets.
+- Blockchain confirmations for crypto transfers.
+- Transaction history available for all transfers.
+
+### 6. Deposit of Fiat
+Users can deposit fiat currency (e.g., USD, NGN) directly into the platform via supported payment methods.
+
+#### Flow:
+- Users select their preferred payment method (e.g., bank transfer, credit card, Paystack).
+- They deposit the desired amount into their WavePay fiat wallet.
+- Once the deposit is confirmed, the fiat balance is updated, allowing users to make payments, disbursements, or transfers.
 
 #### Key Details:
-- Support for bulk payments to multiple recipients.
-- Option to disburse funds in either fiat or cryptocurrency.
-- Event logging to track the status of each disbursement.
+- Integration with payment gateways for fiat deposits (e.g., Paystack, Yellowcard).
+- Fast and secure deposit methods.
+- Transparent deposit fees (if applicable).
+  
+## API Integrations
+
+The WavePay platform integrates with several third-party services to provide seamless payment processing, crypto-to-fiat conversions, and more.
+
+- **Yellowcard API**: Used for crypto-to-fiat conversions and fiat withdrawals to local bank accounts.
+- **Paystack API**: Facilitates fiat deposits and payments for utility services like airtime, TV, and data subscriptions.
+- **Blockchain Networks**: Handles all cryptocurrency transactions securely, ensuring transparency and immutability.
+
