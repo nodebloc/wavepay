@@ -96,12 +96,10 @@ const Dashboard = () => {
               <span className="text-blue-400">820 USDT</span>
             </li>
           </ul>
-          dic
           <button className="bg-gradient-to-r from-blue-500 to-blue-700 border-2 border-white w-full mt-6 py-3 rounded-full flex justify-center items-center text-white hover:bg-blue-400 transition-all">
             <Plus className="mr-2" size={18} /> Deposit
           </button>
         </div>
-
         {/* Transaction History Card */}
 <div className="col-span-1 md:col-span-3 bg-primary-500 text-white p-6 rounded-lg shadow-lg h-auto mt-6">
   <h2 className="text-xl font-semibold mb-4">Transaction History</h2>
@@ -157,9 +155,6 @@ const Dashboard = () => {
     </li>
   </ul>
 </div>
-
-      </div>
-    </div>
   );
 };
 
