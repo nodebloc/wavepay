@@ -76,3 +76,23 @@ The WavePay platform integrates with several third-party services to provide sea
 - **Paystack API**: Facilitates fiat deposits and payments for utility services like airtime, TV, and data subscriptions.
 - **Blockchain Networks**: Handles all cryptocurrency transactions securely, ensuring transparency and immutability.
 
+## Technology Used
+
+### Smart Contracts
+- **Solidity**: Used to develop smart contracts that enable decentralized functionalities such as cryptocurrency transfers, bulk disbursements, and utility payments on the blockchain.
+- **Hardhat**: A development environment and task runner used for compiling, testing, and deploying smart contracts on Ethereum and Ethereum-compatible networks.
+- **Base Network for Deployment**: Ethereum Layer 2 network used to deploy the smart contracts for WavePay’s decentralized functionalities.
+  
+### Backend
+- **Flask**: A lightweight Python web framework for building the server-side logic and handling requests.
+- **Python**: As the programming language for backend development.
+ - **Yellowcard API**: For crypto-to-fiat conversion and fiat withdrawals.
+- **Paystack API**: For fiat deposits and utility payments.
+- **Blockchain Networks**: To securely handle all cryptocurrency-related transactions.
+ 
+### Frontend
+- **React.js**: For building the user interface, providing a responsive and intuitive user experience.
+- **Tailwind CSS**: For rapid UI styling and design, ensuring a clean and responsive layout.
+ - **Web3Modal**: For seamless wallet connection, allowing users to connect various wallets like MetaMask, WalletConnect, etc.
+- **Ethers.js**: For interacting with Ethereum wallets and handling blockchain transactions, ensuring smooth integration with smart contracts.
+
