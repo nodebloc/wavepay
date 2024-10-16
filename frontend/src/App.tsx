@@ -11,12 +11,11 @@ import {
 
 import { createAppKit } from '@reown/appkit/react'
 
-import { WagmiProvider } from 'wagmi'
+import { WagmiProvider } from "wagmi";
 import { arbitrum, baseSepolia, mainnet, base } from "@reown/appkit/networks";
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { WagmiAdapter } from '@reown/appkit-adapter-wagmi'
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
 
-//Pages Imports
 import Disbursment from "./pages/Disbursement";
 import Utility from "./pages/Utilities";
 import Tranfer from "./pages/Transfer";
