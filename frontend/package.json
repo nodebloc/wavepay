@@ -23,7 +23,8 @@
     "react-toastify": "^10.0.6",
     "thirdweb": "^5.62.0",
     "viem": "^2.21.27",
-    "wagmi": "^2.12.18"
+    "wagmi": "^2.12.18",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",
