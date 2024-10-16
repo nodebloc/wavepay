@@ -27,27 +27,29 @@ const Disbursement: React.FC = () => {
 
   const totalAmount = recipients.reduce((sum, recipient) => sum + recipient.amount, 0).toFixed(2);
 
-  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const data = new Uint8Array(e.target?.result as ArrayBuffer);
-        const workbook = XLSX.read(data, { type: 'array' });
-        const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-        const json = XLSX.utils.sheet_to_json<Recipient>(worksheet, { header: 1 });
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const file = event.target.files?.[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const arrayBuffer = e.target?.result as ArrayBuffer;
+      const workbook = XLSX.read(arrayBuffer, { type: 'array' });
+      const firstSheetName = workbook.SheetNames[0];
+      const worksheet = workbook.Sheets[firstSheetName];
+      const json = XLSX.utils.sheet_to_json(worksheet);
+      
+      // Map the JSON data to the Recipient format
+      const newRecipients = json.map((item: any) => ({
+        address: item.Address || '', // Adjust based on your Excel column names
+        amount: Number(item.Amount) || 0,
+      }));
+      
+      setRecipients(newRecipients);
+    };
+    reader.readAsArrayBuffer(file);
+  }
+};
 
-        // Ensure the data is structured correctly
-        const newRecipients = json.slice(1).map((row) => ({
-          address: row[0] || '', // Assuming first column is address
-          amount: Number(row[1]) || 0, // Assuming second column is amount
-        }));
-
-        setRecipients(newRecipients);
-      };
-      reader.readAsArrayBuffer(file);
-    }
-  };
 
   return (
     <div className='bg-primary-100 text-white h-screen w-full'>
@@ -57,12 +59,14 @@ const Disbursement: React.FC = () => {
           <h1 className="text-4xl font-bold mb-4 text-center">Disbursement</h1>
           <p className="text-center mb-6">Total Amount: ${totalAmount}</p>
 
-          <input
-            type="file"
-            accept=".xlsx, .xls"
-            onChange={handleFileUpload}
-            className="mb-4 w-full text-center bg-blue-600 cursor-pointer"
-          />
+          <div className="mb-4">
+            <input
+              type="file"
+              accept=".xlsx, .xls"
+              onChange={handleFileChange}
+              className="mb-4 text-blue-500 cursor-pointer"
+            />
+          </div>
 
           <div className="overflow-y-auto max-h-60 mb-6">
             {recipients.map((recipient, index) => (
