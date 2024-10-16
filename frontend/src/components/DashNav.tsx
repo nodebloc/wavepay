@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const DashNav = () => {
-  const location = useLocation(); // To track the active button by route path
-  const [activeButton, setActiveButton] = useState(location.pathname); // Track active button
+  const location = useLocation();
+  const [activeButton, setActiveButton] = useState(location.pathname);
 
   // Function to handle button click and set the active button
   const handleButtonClick = (path) => {
@@ -66,6 +66,16 @@ const DashNav = () => {
             }`}
           >
             Deposit
+          </button>
+        </Link>
+        {/* Convert Button */}
+        <Link to="/dashboard/cryptofiat" onClick={() => handleButtonClick('/dashboard/cryptofiat')}>
+          <button
+            className={`w-full px-8 py-2 text-xs rounded-full border-2 border-gray-300 shadow-lg transition-all ${
+              activeButton === '/dashboard/cryptofiat' ? 'bg-gradient-to-r from-blue-500 to-blue-700 border-2 border-gray-300' : 'bg-gray-500 border-gray-500'
+            }`}
+          >
+            Crypto/Fiat
           </button>
         </Link>
       </nav>
